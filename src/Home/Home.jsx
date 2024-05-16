@@ -15,7 +15,6 @@ const Home = () => {
       <Teams />
       <Groth />
       <Brands />
-
       <Location />
       <Contact />
     </>

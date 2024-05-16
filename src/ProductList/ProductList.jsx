@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import maizeImage from "../Image/productImage/maize.webp";
+import wheatImage from "../Image/productImage/wheat.webp";
+import paddyImage from "../Image/productImage/paddy.webp";
+import soyaImage from "../Image/productImage/soya.webp";
+import brokenImage from "../Image/productImage/broken.webp";
 
 const ProductList = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -10,21 +15,21 @@ const ProductList = () => {
   const { farmerName, farmerId } = location.state || {};
 
   const productList = [
-    { id: 1, name: "Maize", image: "product1.jpg" },
-    { id: 2, name: "Wheat", image: "product2.jpg" },
-    { id: 3, name: "Paddy", image: "product3.jpg" },
-    { id: 4, name: "Soya", image: "product4.jpg" },
-    { id: 5, name: "Broken Rice", image: "product5.jpg" },
+    { id: 1, name: "Maize", image: maizeImage },
+    { id: 2, name: "Wheat", image: wheatImage },
+    { id: 3, name: "Paddy", image: paddyImage },
+    { id: 4, name: "Soya", image: soyaImage },
+    { id: 5, name: "Broken Rice", image: brokenImage },
   ];
 
   const handleProductSelection = (productId) => {
-    const index = selectedProducts.indexOf(productId);
-    if (index === -1) {
-      setSelectedProducts([...selectedProducts, productId]);
-    } else {
+    if (selectedProducts.includes(productId)) {
       setSelectedProducts(selectedProducts.filter((id) => id !== productId));
+    } else {
+      setSelectedProducts([productId]);
     }
   };
+  
 
   const handleContinue = async () => {
     if (selectedProducts.length === 0) {
