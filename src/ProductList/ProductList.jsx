@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const ProductList = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -13,7 +14,7 @@ const ProductList = () => {
     { id: 2, name: "Wheat", image: "product2.jpg" },
     { id: 3, name: "Paddy", image: "product3.jpg" },
     { id: 4, name: "Soya", image: "product4.jpg" },
-    { id: 5, name: "Broken Rice", image: "product5.jpg" }
+    { id: 5, name: "Broken Rice", image: "product5.jpg" },
   ];
 
   const handleProductSelection = (productId) => {
@@ -21,21 +22,32 @@ const ProductList = () => {
     if (index === -1) {
       setSelectedProducts([...selectedProducts, productId]);
     } else {
-      setSelectedProducts(selectedProducts.filter(id => id !== productId));
+      setSelectedProducts(selectedProducts.filter((id) => id !== productId));
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (selectedProducts.length === 0) {
       setError(true);
     } else {
-      // Proceed to the next step (address selection)
-      navigate("/address-selection");
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/farmerProducts",
+          {
+            farmerId,
+            farmerName,
+            selectedProducts,
+          }
+        );
+        console.log("Response:", response.data);
+        navigate("/address-selection", { state: { farmerId, farmerName } });
+      } catch (error) {
+        console.error("Error saving products:", error);
+      }
     }
   };
 
   const handleBack = () => {
-    // Handle back action
     console.log("Go back...");
   };
 
@@ -55,7 +67,9 @@ const ProductList = () => {
             <label
               htmlFor={`product-${product.id}`}
               className={`cursor-pointer relative block rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg ${
-                selectedProducts.includes(product.id) ? "bg-green-100" : "bg-white"
+                selectedProducts.includes(product.id)
+                  ? "bg-green-100"
+                  : "bg-white"
               }`}
             >
               <div className="flex items-center p-2">
@@ -70,7 +84,9 @@ const ProductList = () => {
           </div>
         ))}
       </div>
-      {error && <p className="text-red-500">Please select at least one product</p>}
+      {error && (
+        <p className="text-red-500">Please select at least one product</p>
+      )}
       <div className="flex justify-center w-full mt-4">
         <button
           onClick={handleBack}
