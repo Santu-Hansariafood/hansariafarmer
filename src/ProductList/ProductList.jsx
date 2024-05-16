@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ProductList = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { farmerName, farmerId } = location.state || {};
 
   const productList = [
-    { id: 1, name: "Product 1", image: "product1.jpg" },
-    { id: 2, name: "Product 2", image: "product2.jpg" },
-    { id: 3, name: "Product 3", image: "product3.jpg" },
-    { id: 4, name: "Product 4", image: "product4.jpg" },
-    { id: 5, name: "Product 5", image: "product5.jpg" }
+    { id: 1, name: "Maize", image: "product1.jpg" },
+    { id: 2, name: "Wheat", image: "product2.jpg" },
+    { id: 3, name: "Paddy", image: "product3.jpg" },
+    { id: 4, name: "Soya", image: "product4.jpg" },
+    { id: 5, name: "Broken Rice", image: "product5.jpg" }
   ];
 
   const handleProductSelection = (productId) => {
@@ -39,23 +41,32 @@ const ProductList = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-full px-4">
-      <h2 className="text-2xl font-bold mb-4">ABCD Farmer Product List</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      <h2 className="text-2xl font-bold mb-4">{farmerName} Wants to Sell</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {productList.map((product) => (
-          <div key={product.id} className="flex items-center mb-2">
+          <div key={product.id} className="relative group">
             <input
               type="checkbox"
               id={`product-${product.id}`}
               checked={selectedProducts.includes(product.id)}
               onChange={() => handleProductSelection(product.id)}
-              className="mr-2"
+              className="opacity-0 absolute h-0 w-0"
             />
-            <label htmlFor={`product-${product.id}`}>{product.name}</label>
-            <img
-              src={product.image}
-              alt={product.name}
-              className="ml-auto h-10 w-10 object-cover rounded-full"
-            />
+            <label
+              htmlFor={`product-${product.id}`}
+              className={`cursor-pointer relative block rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg ${
+                selectedProducts.includes(product.id) ? "bg-green-100" : "bg-white"
+              }`}
+            >
+              <div className="flex items-center p-2">
+                {product.name}
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="ml-auto h-10 w-10 object-cover rounded-full"
+                />
+              </div>
+            </label>
           </div>
         ))}
       </div>

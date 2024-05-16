@@ -21,10 +21,10 @@ const Login = () => {
       const response = await axios.get("http://localhost:3000/registerFarmer");
       const farmers = response.data.farmers;
 
-      const farmer = farmers.find(f => f.mobile === mobileNumber);
+      const farmer = farmers.find((f) => f.mobile === mobileNumber);
 
       if (farmer) {
-        navigate("/product-list");
+        navigate(`/farmer-details/${farmer._id}`, { state: farmer });
       } else {
         setError("Invalid mobile number or password");
       }

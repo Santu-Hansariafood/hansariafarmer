@@ -8,6 +8,7 @@ import ProductList from "./ProductList/ProductList";
 import Adderss from "./Address/Address";
 import Quality from "./Quality/Quality";
 import Quantity from "./Quantity/Quantity";
+import Details from "./Details/Details";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/farmer-details/:id" element={<Details/>}/>
         <Route path="/product-list" element={<ProductList />} />
         <Route path="/address-selection" element={<Adderss />} />
         <Route path="/quality-parameter" element={<Quality />} />
