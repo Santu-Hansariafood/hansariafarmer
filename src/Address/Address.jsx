@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Carousel from "../component/Carousel/Carousel";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import Carousel from "../component/Carousel/Carousel"
 
 const Address = () => {
   const [address, setAddress] = useState({
@@ -8,21 +9,31 @@ const Address = () => {
     post: "",
     policeStation: "",
     district: "",
-    pinNumber: "",
+    pin: "",
     state: "",
-    landmark:"",
+    landmark: "",
   });
   const navigate = useNavigate();
+  const location = useLocation();
+  const { farmerName, farmerId } = location.state || {};
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
-  const handleContinue = () => {
-    // Handle continue logic here
-    console.log("Address:", address);
-    // Redirect to the quality parameter component
-    navigate("/quality-parameter");
+  const handleContinue = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/pickuplocations", {
+        farmerId,
+        farmerName,
+        ...address,
+      });
+      console.log("Response:", response.data);
+      // Redirect to the quality parameter component
+      navigate("/quality-parameter");
+    } catch (error) {
+      console.error("Error saving address:", error);
+    }
   };
 
   const handleBack = () => {
@@ -38,7 +49,7 @@ const Address = () => {
       <div className="w-full md:w-1/2">
         {/* Right Side - Address Form */}
         <div className="flex flex-col items-center justify-center h-full px-4">
-          <h2 className="text-2xl font-bold mb-4">Select Pickup Location</h2>
+          <h2 className="text-2xl font-bold mb-4">Pickup Location for {farmerName} </h2>
           <div className="w-full max-w-xs">
           <label htmlFor="landmark" className="block mb-2">Landmark</label>
             <input
