@@ -9,6 +9,7 @@ import Adderss from "./Address/Address";
 import Quality from "./Quality/Quality";
 import Quantity from "./Quantity/Quantity";
 import Details from "./Details/Details";
+import ConfirmOrder from "./ConfirmOrder/ConfirmOrder";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/address-selection" element={<Adderss />} />
         <Route path="/quality-parameter" element={<Quality />} />
         <Route path="/quantity" element={<Quantity />} />
+        <Route path="/confirm-order" element={<ConfirmOrder/>}/>
       </Routes>
     </BrowserRouter>
   );

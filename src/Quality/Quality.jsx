@@ -12,7 +12,7 @@ const Quality = () => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName ,selectedProducts} = location.state || {};
+  const { farmerId, farmerName } = location.state || {};
 
   const handleChange = (e) => {
     setQualityParameters({ ...qualityParameters, [e.target.name]: e.target.value });
@@ -83,7 +83,7 @@ const Quality = () => {
               name="smallgain"
               value={qualityParameters.smallgain}
               onChange={handleChange}
-              placeholder="Parameter 1"
+              placeholder="Small Gain Parameter"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
             <label htmlFor="moisture" className="block mb-2">Moisture</label>

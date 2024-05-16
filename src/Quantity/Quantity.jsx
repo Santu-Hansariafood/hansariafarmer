@@ -12,7 +12,7 @@ const Quantity = () => {
   const [showButtons, setShowButtons] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName, selectedProducts } = location.state || {};
+  const { farmerId, farmerName } = location.state || {};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +30,7 @@ const Quantity = () => {
   };
 
   const handleConfirmOrder = () => {
-    navigate("/confirm");
+    navigate("/confirm-order");
   };
 
   const handleBack = () => {
