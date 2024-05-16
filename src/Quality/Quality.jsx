@@ -1,29 +1,39 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Quality = () => {
   const [qualityParameters, setQualityParameters] = useState({
-    parameter1: "",
-    parameter2: "",
-    parameter3: "",
-    parameter4: "",
-    parameter5: ""
+    broken: "",
+    fungus: "",
+    damage: "",
+    smallgain: "",
+    moisture: ""
   });
   const navigate = useNavigate();
+  const location = useLocation();
+  const { farmerId, farmerName ,selectedProducts} = location.state || {};
 
   const handleChange = (e) => {
     setQualityParameters({ ...qualityParameters, [e.target.name]: e.target.value });
   };
 
-  const handleContinue = () => {
-    // Handle continue logic here
-    console.log("Quality Parameters:", qualityParameters);
-    // Redirect to the next step (if applicable)
-    navigate("/quantity");
+  const handleContinue = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/quality-parameter", {
+        farmerId,
+        farmerName,
+        ...qualityParameters
+      });
+      console.log("Quality Parameters:", qualityParameters);
+      console.log("Response:", response.data);
+      navigate("/quantity", { state: { farmerId, farmerName } });
+    } catch (error) {
+      console.error("Error saving quality parameters:", error);
+    }
   };
 
   const handleBack = () => {
-    // Handle back action
     console.log("Go back...");
   };
 
@@ -33,61 +43,59 @@ const Quality = () => {
         {/* Left Side - Carousel Component */}
       </div>
       <div className="w-full md:w-1/2">
-        {/* Right Side - Quality Parameters Form */}
         <div className="flex flex-col items-center justify-center h-full px-4">
-          <h2 className="text-2xl font-bold mb-4">Quality Parameters</h2>
+          <h2 className="text-2xl font-bold mb-4">Quality Parameters {farmerName}</h2>
           <div className="w-full max-w-xs">
-            <label htmlFor="parameter1" className="block mb-2">Parameter 1</label>
+            <label htmlFor="broken" className="block mb-2">Broken</label>
             <input
               type="text"
-              id="parameter1"
-              name="parameter1"
-              value={qualityParameters.parameter1}
+              id="broken"
+              name="broken"
+              value={qualityParameters.broken}
+              onChange={handleChange}
+              placeholder="Broken Parameter"
+              className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+            />
+            <label htmlFor="fungus" className="block mb-2">Fungus</label>
+            <input
+              type="text"
+              id="fungus"
+              name="fungus"
+              value={qualityParameters.fungus}
+              onChange={handleChange}
+              placeholder="Fungus Parameter"
+              className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+            />
+            <label htmlFor="damage" className="block mb-2">Damage</label>
+            <input
+              type="text"
+              id="damage"
+              name="damage"
+              value={qualityParameters.damage}
+              onChange={handleChange}
+              placeholder="Damage Parameter"
+              className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+            />
+            <label htmlFor="smallgain" className="block mb-2">Small Gain</label>
+            <input
+              type="text"
+              id="smallgain"
+              name="smallgain"
+              value={qualityParameters.smallgain}
               onChange={handleChange}
               placeholder="Parameter 1"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
-            <label htmlFor="parameter1" className="block mb-2">Parameter 1</label>
+            <label htmlFor="moisture" className="block mb-2">Moisture</label>
             <input
               type="text"
-              id="parameter1"
-              name="parameter1"
-              value={qualityParameters.parameter1}
+              id="moisture"
+              name="moisture"
+              value={qualityParameters.moisture}
               onChange={handleChange}
-              placeholder="Parameter 1"
+              placeholder="Moisture Parameter"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
-            <label htmlFor="parameter1" className="block mb-2">Parameter 1</label>
-            <input
-              type="text"
-              id="parameter1"
-              name="parameter1"
-              value={qualityParameters.parameter1}
-              onChange={handleChange}
-              placeholder="Parameter 1"
-              className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-            />
-            <label htmlFor="parameter1" className="block mb-2">Parameter 1</label>
-            <input
-              type="text"
-              id="parameter1"
-              name="parameter1"
-              value={qualityParameters.parameter1}
-              onChange={handleChange}
-              placeholder="Parameter 1"
-              className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-            />
-            <label htmlFor="parameter1" className="block mb-2">Parameter 1</label>
-            <input
-              type="text"
-              id="parameter1"
-              name="parameter1"
-              value={qualityParameters.parameter1}
-              onChange={handleChange}
-              placeholder="Parameter 1"
-              className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-            />
-            {/* Add similar input fields for parameter2, parameter3, parameter4, and parameter5 */}
           </div>
           <div className="flex justify-center w-full mt-4">
             <button

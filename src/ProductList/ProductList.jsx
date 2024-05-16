@@ -40,7 +40,7 @@ const ProductList = () => {
           }
         );
         console.log("Response:", response.data);
-        navigate("/address-selection", { state: { farmerId, farmerName } });
+        navigate("/address-selection", { state: { farmerId, farmerName} });
       } catch (error) {
         console.error("Error saving products:", error);
       }

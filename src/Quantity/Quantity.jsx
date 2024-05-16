@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Quantity = () => {
   const [quantity, setQuantity] = useState({
@@ -10,36 +10,36 @@ const Quantity = () => {
     totalPrice: 0
   });
   const [showButtons, setShowButtons] = useState(false);
-  const navigate = useNavigate(); // Import useNavigate from react-router-dom
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { farmerId, farmerName, selectedProducts } = location.state || {};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setQuantity({ ...quantity, [name]: value });
-    setShowButtons(false); // Reset showButtons when input changes
+    setShowButtons(false);
   };
 
   const calculateTotalPrice = () => {
     const { totalBags, ratePerTon, weightPerBag } = quantity;
-    const ratePerKg = ratePerTon / 1000; // Convert rate from ton to kg
-    const totalPrice = totalBags * weightPerBag * ratePerKg; // Total price calculation
-    const roundedTotalPrice = Math.round(totalPrice * 100) / 100; // Round to two decimal places
+    const ratePerKg = ratePerTon / 1000;
+    const totalPrice = totalBags * weightPerBag * ratePerKg;
+    const roundedTotalPrice = Math.round(totalPrice * 100) / 100;
     setQuantity({ ...quantity, totalPrice: roundedTotalPrice });
-    setShowButtons(true); // Show buttons after calculating total price
+    setShowButtons(true);
   };
 
   const handleConfirmOrder = () => {
-    // Redirect to the confirm page
     navigate("/confirm");
   };
 
   const handleBack = () => {
-    // Handle back action
     console.log("Go back...");
   };
 
   return (
     <div className="max-w-md mx-auto p-4 border border-gray-200 rounded-lg shadow-lg">
-      <h2 className="text-lg font-semibold mb-4">Quantity Component</h2>
+      <h2 className="text-lg font-semibold mb-4">Quantity Component {farmerName}</h2>
       <div className="mb-4">
         <label className="block text-gray-700">Product Name:</label>
         <input

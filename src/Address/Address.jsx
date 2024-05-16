@@ -15,7 +15,7 @@ const Address = () => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerName, farmerId } = location.state || {};
+  const { farmerName, farmerId, selectedProducts } = location.state || {};
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
@@ -29,15 +29,13 @@ const Address = () => {
         ...address,
       });
       console.log("Response:", response.data);
-      // Redirect to the quality parameter component
-      navigate("/quality-parameter");
+      navigate("/quality-parameter", { state: { farmerId, farmerName} });
     } catch (error) {
       console.error("Error saving address:", error);
     }
   };
 
   const handleBack = () => {
-    // Handle back action
     console.log("Go back...");
   };
 
@@ -47,7 +45,6 @@ const Address = () => {
         <Carousel/>
       </div>
       <div className="w-full md:w-1/2">
-        {/* Right Side - Address Form */}
         <div className="flex flex-col items-center justify-center h-full px-4">
           <h2 className="text-2xl font-bold mb-4">Pickup Location for {farmerName} </h2>
           <div className="w-full max-w-xs">
