@@ -17,8 +17,7 @@ const Quantity = () => {
   const [showButtons, setShowButtons] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName, selectedProducts } = location.state || {};
-  console.log(selectedProducts);
+  const { farmerId, farmerName, selectedProducts, qualityParameters,address } = location.state || {};
 
   // Product list to map IDs to names
   const productList = [
@@ -57,7 +56,7 @@ const Quantity = () => {
   };
 
   const handleConfirmOrder = () => {
-    navigate("/confirm-order", { state: { farmerId, farmerName } });
+    navigate("/confirm-order", { state: { farmerId, farmerName, ...quantity, qualityParameters,address } });
   };
 
   const handleBack = () => {
@@ -75,7 +74,7 @@ const Quantity = () => {
           value={quantity.productName}
           onChange={handleChange}
           className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-          readOnly // Make it read-only if you don't want the user to change it
+          readOnly
         />
       </div>
       <div className="mb-4">

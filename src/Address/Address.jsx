@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import Carousel from "../component/Carousel/Carousel"
+import Carousel from "../component/Carousel/Carousel";
 
 const Address = () => {
   const [address, setAddress] = useState({
@@ -29,26 +29,33 @@ const Address = () => {
         ...address,
       });
       console.log("Response:", response.data);
-      navigate("/quality-parameter", { state: { farmerId, farmerName, selectedProducts} });
+      navigate("/quality-parameter", {
+        state: {
+          farmerId,
+          farmerName,
+          selectedProducts,
+          address,
+        },
+      });
     } catch (error) {
       console.error("Error saving address:", error);
     }
   };
 
   const handleBack = () => {
-    console.log("Go back...");
+    navigate(-1); // Go back to the previous page
   };
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center w-full h-screen mt-10">
       <div className="w-full md:w-1/2">
-        <Carousel/>
+        <Carousel />
       </div>
       <div className="w-full md:w-1/2">
         <div className="flex flex-col items-center justify-center h-full px-4">
           <h2 className="text-2xl font-bold mb-4">Pickup Location for {farmerName} </h2>
           <div className="w-full max-w-xs">
-          <label htmlFor="landmark" className="block mb-2">Landmark</label>
+            <label htmlFor="landmark" className="block mb-2">Landmark</label>
             <input
               type="text"
               id="landmark"
@@ -57,7 +64,7 @@ const Address = () => {
               onChange={handleChange}
               placeholder="Enter Landmark"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-              required="true"
+              required
             />
             <label htmlFor="village" className="block mb-2">Village</label>
             <input
@@ -68,7 +75,7 @@ const Address = () => {
               onChange={handleChange}
               placeholder="Enter Village"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-              required="true"
+              required
             />
             <label htmlFor="post" className="block mb-2">Post</label>
             <input
@@ -79,7 +86,7 @@ const Address = () => {
               onChange={handleChange}
               placeholder="Enter Post Office"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-              required="true"
+              required
             />
             <label htmlFor="policeStation" className="block mb-2">Police Station</label>
             <input
@@ -90,7 +97,7 @@ const Address = () => {
               onChange={handleChange}
               placeholder="Enter Police Station"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-              required="true"
+              required
             />
             <label htmlFor="district" className="block mb-2">District</label>
             <input
@@ -99,9 +106,9 @@ const Address = () => {
               name="district"
               value={address.district}
               onChange={handleChange}
-              placeholder="Enter District"  
+              placeholder="Enter District"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-              required="true"
+              required
             />
             <label htmlFor="pin" className="block mb-2">Pin</label>
             <input
@@ -112,7 +119,7 @@ const Address = () => {
               onChange={handleChange}
               placeholder="pin"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
-              required="true"
+              required
               maxLength={6}
               minLength={6}
             />

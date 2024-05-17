@@ -12,7 +12,7 @@ const Quality = () => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName,selectedProducts } = location.state || {};
+  const { farmerId, farmerName, selectedProducts, address } = location.state || {}; // Access address state
 
   const handleChange = (e) => {
     setQualityParameters({ ...qualityParameters, [e.target.name]: e.target.value });
@@ -27,14 +27,22 @@ const Quality = () => {
       });
       console.log("Quality Parameters:", qualityParameters);
       console.log("Response:", response.data);
-      navigate("/quantity", { state: { farmerId, farmerName,selectedProducts } });
+      navigate("/quantity", {
+        state: {
+          farmerId,
+          farmerName,
+          selectedProducts,
+          qualityParameters,
+          address // Pass address state along
+        },
+      });
     } catch (error) {
       console.error("Error saving quality parameters:", error);
     }
   };
 
   const handleBack = () => {
-    console.log("Go back...");
+    navigate(-1); // Go back to the previous page
   };
 
   return (
