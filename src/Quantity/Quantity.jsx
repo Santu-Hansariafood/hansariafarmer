@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import maizeImage from "../Image/productImage/maize.webp";
+import wheatImage from "../Image/productImage/wheat.webp";
+import paddyImage from "../Image/productImage/paddy.webp";
+import soyaImage from "../Image/productImage/soya.webp";
+import brokenImage from "../Image/productImage/broken.webp";
 
 const Quantity = () => {
   const [quantity, setQuantity] = useState({
@@ -7,12 +12,34 @@ const Quantity = () => {
     totalBags: 0,
     weightPerBag: 0,
     ratePerTon: 0,
-    totalPrice: 0
+    totalPrice: 0,
   });
   const [showButtons, setShowButtons] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName } = location.state || {};
+  const { farmerId, farmerName, selectedProducts } = location.state || {};
+  console.log(selectedProducts);
+
+  // Product list to map IDs to names
+  const productList = [
+    { id: 1, name: "Maize", image: maizeImage },
+    { id: 2, name: "Wheat", image: wheatImage },
+    { id: 3, name: "Paddy", image: paddyImage },
+    { id: 4, name: "Soya", image: soyaImage },
+    { id: 5, name: "Broken Rice", image: brokenImage },
+  ];
+
+  useEffect(() => {
+    if (selectedProducts && selectedProducts.length > 0) {
+      const selectedProduct = productList.find(product => product.id === selectedProducts[0]);
+      if (selectedProduct) {
+        setQuantity((prevQuantity) => ({
+          ...prevQuantity,
+          productName: selectedProduct.name,
+        }));
+      }
+    }
+  }, [selectedProducts]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +57,7 @@ const Quantity = () => {
   };
 
   const handleConfirmOrder = () => {
-    navigate("/confirm-order");
+    navigate("/confirm-order", { state: { farmerId, farmerName } });
   };
 
   const handleBack = () => {
@@ -48,6 +75,7 @@ const Quantity = () => {
           value={quantity.productName}
           onChange={handleChange}
           className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          readOnly // Make it read-only if you don't want the user to change it
         />
       </div>
       <div className="mb-4">
@@ -106,7 +134,9 @@ const Quantity = () => {
       )}
       <div>
         <label className="block text-gray-700">Total Price:</label>
-        <span className="inline-block bg-gray-200 py-2 px-3 rounded-md">{quantity.totalPrice.toFixed(2)}</span>
+        <span className="inline-block bg-gray-200 py-2 px-3 rounded-md">
+          {quantity.totalPrice.toFixed(2)}
+        </span>
       </div>
     </div>
   );

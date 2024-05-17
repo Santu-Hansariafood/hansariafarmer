@@ -15,7 +15,7 @@ const Address = () => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerName, farmerId } = location.state || {};
+  const { farmerName, farmerId, selectedProducts } = location.state || {};
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
@@ -29,7 +29,7 @@ const Address = () => {
         ...address,
       });
       console.log("Response:", response.data);
-      navigate("/quality-parameter", { state: { farmerId, farmerName} });
+      navigate("/quality-parameter", { state: { farmerId, farmerName, selectedProducts} });
     } catch (error) {
       console.error("Error saving address:", error);
     }
@@ -55,8 +55,9 @@ const Address = () => {
               name="landmark"
               value={address.landmark}
               onChange={handleChange}
-              placeholder="landmark"
+              placeholder="Enter Landmark"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+              required="true"
             />
             <label htmlFor="village" className="block mb-2">Village</label>
             <input
@@ -65,8 +66,9 @@ const Address = () => {
               name="village"
               value={address.village}
               onChange={handleChange}
-              placeholder="Village"
+              placeholder="Enter Village"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+              required="true"
             />
             <label htmlFor="post" className="block mb-2">Post</label>
             <input
@@ -75,40 +77,46 @@ const Address = () => {
               name="post"
               value={address.post}
               onChange={handleChange}
-              placeholder="Post"
+              placeholder="Enter Post Office"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+              required="true"
             />
-            <label htmlFor="policeStation" className="block mb-2">policeStation</label>
+            <label htmlFor="policeStation" className="block mb-2">Police Station</label>
             <input
               type="text"
               id="policeStation"
               name="policeStation"
               value={address.policeStation}
               onChange={handleChange}
-              placeholder="policeStation"
+              placeholder="Enter Police Station"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+              required="true"
             />
-            <label htmlFor="district" className="block mb-2">district</label>
+            <label htmlFor="district" className="block mb-2">District</label>
             <input
               type="text"
               id="district"
               name="district"
               value={address.district}
               onChange={handleChange}
-              placeholder="district"
+              placeholder="Enter District"  
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+              required="true"
             />
-            <label htmlFor="pin" className="block mb-2">pin</label>
+            <label htmlFor="pin" className="block mb-2">Pin</label>
             <input
-              type="text"
+              type="number"
               id="pin"
               name="pin"
               value={address.pin}
               onChange={handleChange}
               placeholder="pin"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
+              required="true"
+              maxLength={6}
+              minLength={6}
             />
-            <label htmlFor="state" className="block mb-2">state</label>
+            <label htmlFor="state" className="block mb-2">State</label>
             <input
               type="text"
               id="state"

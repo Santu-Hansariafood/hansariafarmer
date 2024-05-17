@@ -1,5 +1,10 @@
 import React from "react";
-import { FaFacebook, FaInstagramSquare, FaLinkedin ,FaWhatsapp} from "react-icons/fa";
+import {
+  FaFacebook,
+  FaInstagramSquare,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { IoLogoYoutube } from "react-icons/io";
 
 const Footer = () => {
@@ -31,20 +36,26 @@ const Footer = () => {
             </a>
           </div>
           <div className="flex items-center">
-            <a href="#" className="text-white hover:bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 mr-4">
-              <FaFacebook className="h-7 w-7" title="Facebook"/>
+            <a
+              href="#"
+              className="text-white hover:bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 mr-4"
+            >
+              <FaFacebook className="h-7 w-7" title="Facebook" />
             </a>
-            <a href="#" className="text-white hover:bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] mr-4">
-              <FaInstagramSquare className="h-7 w-7" title="Instagram"/>
+            <a
+              href="#"
+              className="text-white hover:bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] mr-4"
+            >
+              <FaInstagramSquare className="h-7 w-7" title="Instagram" />
             </a>
             <a href="#" className="text-white hover:text-red-500 mr-4">
-              <IoLogoYoutube className="h-7 w-7" title="Youtube"/>
+              <IoLogoYoutube className="h-7 w-7" title="Youtube" />
             </a>
             <a href="#" className="text-white hover:text-blue-500 mr-4">
-              <FaLinkedin className="h-7 w-7" title="Linkdin"/>
+              <FaLinkedin className="h-7 w-7" title="Linkdin" />
             </a>
             <a href="#" className="text-white hover:text-green-500 mr-4">
-              <FaWhatsapp className="h-7 w-7" title="Whats App"/>
+              <FaWhatsapp className="h-7 w-7" title="Whats App" />
             </a>
           </div>
         </div>

@@ -12,7 +12,7 @@ const Quality = () => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName } = location.state || {};
+  const { farmerId, farmerName,selectedProducts } = location.state || {};
 
   const handleChange = (e) => {
     setQualityParameters({ ...qualityParameters, [e.target.name]: e.target.value });
@@ -27,7 +27,7 @@ const Quality = () => {
       });
       console.log("Quality Parameters:", qualityParameters);
       console.log("Response:", response.data);
-      navigate("/quantity", { state: { farmerId, farmerName } });
+      navigate("/quantity", { state: { farmerId, farmerName,selectedProducts } });
     } catch (error) {
       console.error("Error saving quality parameters:", error);
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import maizeImage from "../Image/productImage/maize.webp";
@@ -29,7 +29,6 @@ const ProductList = () => {
       setSelectedProducts([productId]);
     }
   };
-  
 
   const handleContinue = async () => {
     if (selectedProducts.length === 0) {
@@ -45,7 +44,7 @@ const ProductList = () => {
           }
         );
         console.log("Response:", response.data);
-        navigate("/address-selection", { state: { farmerId, farmerName} });
+        navigate("/address-selection", { state: { farmerId, farmerName, selectedProducts } });
       } catch (error) {
         console.error("Error saving products:", error);
       }
