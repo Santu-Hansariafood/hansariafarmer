@@ -23,11 +23,14 @@ const Address = () => {
 
   const handleContinue = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/pickuplocations", {
-        farmerId,
-        farmerName,
-        ...address,
-      });
+      const response = await axios.post(
+        "http://localhost:3000/pickuplocations",
+        {
+          farmerId,
+          farmerName,
+          ...address,
+        }
+      );
       console.log("Response:", response.data);
       navigate("/quality-parameter", {
         state: {
@@ -43,7 +46,7 @@ const Address = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Go back to the previous page
+    navigate(-1);
   };
 
   return (
@@ -53,9 +56,13 @@ const Address = () => {
       </div>
       <div className="w-full md:w-1/2">
         <div className="flex flex-col items-center justify-center h-full px-4">
-          <h2 className="text-2xl font-bold mb-4">Pickup Location for {farmerName} </h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Pickup Location for {farmerName}{" "}
+          </h2>
           <div className="w-full max-w-xs">
-            <label htmlFor="landmark" className="block mb-2">Landmark</label>
+            <label htmlFor="landmark" className="block mb-2">
+              Landmark
+            </label>
             <input
               type="text"
               id="landmark"
@@ -66,7 +73,9 @@ const Address = () => {
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
               required
             />
-            <label htmlFor="village" className="block mb-2">Village</label>
+            <label htmlFor="village" className="block mb-2">
+              Village
+            </label>
             <input
               type="text"
               id="village"
@@ -77,7 +86,9 @@ const Address = () => {
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
               required
             />
-            <label htmlFor="post" className="block mb-2">Post</label>
+            <label htmlFor="post" className="block mb-2">
+              Post
+            </label>
             <input
               type="text"
               id="post"
@@ -88,7 +99,9 @@ const Address = () => {
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
               required
             />
-            <label htmlFor="policeStation" className="block mb-2">Police Station</label>
+            <label htmlFor="policeStation" className="block mb-2">
+              Police Station
+            </label>
             <input
               type="text"
               id="policeStation"
@@ -99,7 +112,9 @@ const Address = () => {
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
               required
             />
-            <label htmlFor="district" className="block mb-2">District</label>
+            <label htmlFor="district" className="block mb-2">
+              District
+            </label>
             <input
               type="text"
               id="district"
@@ -110,7 +125,9 @@ const Address = () => {
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
               required
             />
-            <label htmlFor="pin" className="block mb-2">Pin</label>
+            <label htmlFor="pin" className="block mb-2">
+              Pin
+            </label>
             <input
               type="number"
               id="pin"
@@ -123,7 +140,9 @@ const Address = () => {
               maxLength={6}
               minLength={6}
             />
-            <label htmlFor="state" className="block mb-2">State</label>
+            <label htmlFor="state" className="block mb-2">
+              State
+            </label>
             <input
               type="text"
               id="state"

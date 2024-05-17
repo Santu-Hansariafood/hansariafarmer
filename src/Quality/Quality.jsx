@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import Carousel from "../component/Carousel/Carousel";
 
 const Quality = () => {
   const [qualityParameters, setQualityParameters] = useState({
@@ -8,23 +9,30 @@ const Quality = () => {
     fungus: "",
     damage: "",
     smallgain: "",
-    moisture: ""
+    moisture: "",
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName, selectedProducts, address } = location.state || {}; // Access address state
+  const { farmerId, farmerName, selectedProducts, address } =
+    location.state || {};
 
   const handleChange = (e) => {
-    setQualityParameters({ ...qualityParameters, [e.target.name]: e.target.value });
+    setQualityParameters({
+      ...qualityParameters,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleContinue = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/quality-parameter", {
-        farmerId,
-        farmerName,
-        ...qualityParameters
-      });
+      const response = await axios.post(
+        "http://localhost:3000/quality-parameter",
+        {
+          farmerId,
+          farmerName,
+          ...qualityParameters,
+        }
+      );
       console.log("Quality Parameters:", qualityParameters);
       console.log("Response:", response.data);
       navigate("/quantity", {
@@ -33,7 +41,7 @@ const Quality = () => {
           farmerName,
           selectedProducts,
           qualityParameters,
-          address // Pass address state along
+          address,
         },
       });
     } catch (error) {
@@ -42,19 +50,23 @@ const Quality = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Go back to the previous page
+    navigate(-1);
   };
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center w-full h-screen">
       <div className="w-full md:w-1/2">
-        {/* Left Side - Carousel Component */}
+        <Carousel/>
       </div>
       <div className="w-full md:w-1/2">
         <div className="flex flex-col items-center justify-center h-full px-4">
-          <h2 className="text-2xl font-bold mb-4">Quality Parameters {farmerName}</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            Quality Parameters {farmerName}
+          </h2>
           <div className="w-full max-w-xs">
-            <label htmlFor="broken" className="block mb-2">Broken</label>
+            <label htmlFor="broken" className="block mb-2">
+              Broken
+            </label>
             <input
               type="text"
               id="broken"
@@ -64,7 +76,9 @@ const Quality = () => {
               placeholder="Broken Parameter"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
-            <label htmlFor="fungus" className="block mb-2">Fungus</label>
+            <label htmlFor="fungus" className="block mb-2">
+              Fungus
+            </label>
             <input
               type="text"
               id="fungus"
@@ -74,7 +88,9 @@ const Quality = () => {
               placeholder="Fungus Parameter"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
-            <label htmlFor="damage" className="block mb-2">Damage</label>
+            <label htmlFor="damage" className="block mb-2">
+              Damage
+            </label>
             <input
               type="text"
               id="damage"
@@ -84,7 +100,9 @@ const Quality = () => {
               placeholder="Damage Parameter"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
-            <label htmlFor="smallgain" className="block mb-2">Small Gain</label>
+            <label htmlFor="smallgain" className="block mb-2">
+              Small Gain
+            </label>
             <input
               type="text"
               id="smallgain"
@@ -94,7 +112,9 @@ const Quality = () => {
               placeholder="Small Gain Parameter"
               className="input-field mb-4 border border-gray-300 rounded-md px-4 py-2 w-80"
             />
-            <label htmlFor="moisture" className="block mb-2">Moisture</label>
+            <label htmlFor="moisture" className="block mb-2">
+              Moisture
+            </label>
             <input
               type="text"
               id="moisture"

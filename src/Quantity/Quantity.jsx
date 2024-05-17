@@ -17,9 +17,9 @@ const Quantity = () => {
   const [showButtons, setShowButtons] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerId, farmerName, selectedProducts, qualityParameters,address } = location.state || {};
+  const { farmerId, farmerName, selectedProducts, qualityParameters, address } =
+    location.state || {};
 
-  // Product list to map IDs to names
   const productList = [
     { id: 1, name: "Maize", image: maizeImage },
     { id: 2, name: "Wheat", image: wheatImage },
@@ -30,7 +30,9 @@ const Quantity = () => {
 
   useEffect(() => {
     if (selectedProducts && selectedProducts.length > 0) {
-      const selectedProduct = productList.find(product => product.id === selectedProducts[0]);
+      const selectedProduct = productList.find(
+        (product) => product.id === selectedProducts[0]
+      );
       if (selectedProduct) {
         setQuantity((prevQuantity) => ({
           ...prevQuantity,
@@ -56,7 +58,9 @@ const Quantity = () => {
   };
 
   const handleConfirmOrder = () => {
-    navigate("/confirm-order", { state: { farmerId, farmerName, ...quantity, qualityParameters,address } });
+    navigate("/confirm-order", {
+      state: { farmerId, farmerName, ...quantity, qualityParameters, address },
+    });
   };
 
   const handleBack = () => {
@@ -65,7 +69,9 @@ const Quantity = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 border border-gray-200 rounded-lg shadow-lg">
-      <h2 className="text-lg font-semibold mb-4">Quantity Component {farmerName}</h2>
+      <h2 className="text-lg font-semibold mb-4">
+        Quantity Component {farmerName}
+      </h2>
       <div className="mb-4">
         <label className="block text-gray-700">Product Name:</label>
         <input
