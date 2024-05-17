@@ -73,7 +73,7 @@ const ProductList = () => {
               htmlFor={`product-${product.id}`}
               className={`cursor-pointer relative block rounded-lg overflow-hidden transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg ${
                 selectedProducts.includes(product.id)
-                  ? "bg-green-100"
+                  ? "bg-green-200"
                   : "bg-white"
               }`}
             >

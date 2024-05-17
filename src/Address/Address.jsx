@@ -15,7 +15,7 @@ const Address = () => {
   });
   const navigate = useNavigate();
   const location = useLocation();
-  const { farmerName, farmerId, selectedProducts } = location.state || {};
+  const { farmerName, farmerId } = location.state || {};
 
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });

@@ -18,11 +18,11 @@ const Location = () => {
         {/* Office Address */}
         <div className="bg-gray-100 rounded-lg overflow-hidden">
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">Office Address</h2>
-            <p className="text-gray-700 mb-2">1234 Street Name</p>
-            <p className="text-gray-700 mb-2">City Name</p>
-            <p className="text-gray-700 mb-2">Country</p>
-            <p className="text-gray-700">Postal Code</p>
+            <h2 className="text-2xl font-bold mb-4">Head Office Address</h2>
+            <p className="text-gray-700 mb-2">LA Block, Plot No.1, Primarc Square</p>
+            <p className="text-gray-700 mb-2">Sector: 3, Bidhannagar, Kolkata</p>
+            <p className="text-gray-700 mb-2">Kolkata, West Bengal(INDIA)</p>
+            <p className="text-gray-700">700098</p>
           </div>
         </div>
       </div>
