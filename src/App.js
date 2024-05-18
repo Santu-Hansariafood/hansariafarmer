@@ -10,6 +10,7 @@ import Quality from "./Quality/Quality";
 import Quantity from "./Quantity/Quantity";
 import Details from "./Details/Details";
 import ConfirmOrder from "./ConfirmOrder/ConfirmOrder";
+import ThankYou from "./ThankYou/ThankYou";
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
         <Route path="/quality-parameter" element={<Quality />} />
         <Route path="/quantity" element={<Quantity />} />
         <Route path="/confirm-order" element={<ConfirmOrder/>}/>
+        <Route path="/thankyou/:orderId" element={<ThankYou />} />
+
       </Routes>
     </BrowserRouter>
   );

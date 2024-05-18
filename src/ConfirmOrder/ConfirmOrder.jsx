@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const ConfirmOrder = () => {
   const location = useLocation();
@@ -27,6 +29,51 @@ const ConfirmOrder = () => {
 
   const handleCancel = () => {
     navigate(-1);
+  };
+
+  const handleConfirmOrder = async () => {
+    const orderData = {
+      farmerId,
+      farmerName,
+      productName,
+      totalBags,
+      weightPerBag,
+      ratePerTon,
+      totalPrice,
+      qualityParameters,
+      address,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/orderByFarmer",
+        orderData
+      );
+      const orderId = response.data._id; // Assuming the response contains the order ID
+
+      Swal.fire({
+        title: "Thank You!",
+        text: `Your order has been confirmed. Order ID: ${orderId}`,
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate(`/thankyou/${orderId}`, { state: { farmerId, farmerName } });
+      });
+
+      console.log("Order confirmed:", response.data);
+    } catch (error) {
+      console.error("Error confirming order:", error);
+
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+        console.error("Error response headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("Error request data:", error.request);
+      } else {
+        console.error("Error message:", error.message);
+      }
+    }
   };
 
   return (
@@ -204,7 +251,10 @@ const ConfirmOrder = () => {
       )}
 
       <div className="text-center mt-4">
-        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none mr-2">
+        <button
+          onClick={handleConfirmOrder}
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none mr-2"
+        >
           Confirm Order
         </button>
         <button
