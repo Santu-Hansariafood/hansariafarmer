@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Logo from "../../../../src/Image/logo/hansaria.webp"
 
 const handleScroll = (e, id) => {
   e.preventDefault();
@@ -21,11 +22,9 @@ const Header = () => {
   return (
     <header className="bg-gray-800 py-4 px-6 flex items-center justify-between fixed w-full top-0 z-50">
       <div className="flex items-center">
-        {/* Logo */}
         <div className="mr-4">
-          <img src="/path/to/your/logo.png" alt="Logo" className="h-8" />
+          <img src={Logo} alt="Logo" className="h-8 w-8" />
         </div>
-        {/* Navigation Menu */}
         <nav className={`hidden md:flex space-x-4 ${isOpen ? 'hidden' : ''}`}>
           <a
             href="#home"
@@ -64,13 +63,11 @@ const Header = () => {
           </a>
         </nav>
       </div>
-      {/* Login Button */}
       <div className="flex items-center">
         <a href="/login" className="text-white hover:text-gray-300 ml-auto">
           Login
         </a>
       </div>
-      {/* Hamburger Menu */}
       <div className="md:hidden">
         <button
           onClick={toggleMenu}
@@ -92,7 +89,6 @@ const Header = () => {
           </svg>
         </button>
       </div>
-      {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-gray-800 py-4 px-6 flex flex-col items-start space-y-2">
           <a

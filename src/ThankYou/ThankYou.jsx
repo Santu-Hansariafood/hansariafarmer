@@ -4,10 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 const ThankYou = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { farmerId, farmerName } = location.state || {};
+  const { farmerId, farmerName, orderId } = location.state || {};
 
   const handleBackToHome = () => {
     navigate("/");
+  };
+
+  const handleViewFarmerDetails = () => {
+    navigate(`/farmer-details/${farmerId}`);
   };
 
   return (
@@ -21,12 +25,21 @@ const ThankYou = () => {
         <p className="mb-2">
           <strong>Farmer Name:</strong> {farmerName}
         </p>
-        <button
-          onClick={handleBackToHome}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4"
-        >
-          Back to Home
-        </button>
+        <p className="mb-2"><strong>Order ID:</strong> {orderId}</p>
+        <div className="mt-4">
+          <button
+            onClick={handleBackToHome}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+          >
+            Back to Home
+          </button>
+          <button
+            onClick={handleViewFarmerDetails}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md ml-2"
+          >
+            View Farmer Details
+          </button>
+        </div>
       </div>
     </div>
   );

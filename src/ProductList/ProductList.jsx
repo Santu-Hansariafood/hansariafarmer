@@ -52,6 +52,7 @@ const ProductList = () => {
   };
 
   const handleBack = () => {
+    navigate(-1);
     console.log("Go back...");
   };
 
