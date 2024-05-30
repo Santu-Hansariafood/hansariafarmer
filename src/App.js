@@ -12,6 +12,7 @@ import Details from "./Details/Details";
 import ConfirmOrder from "./ConfirmOrder/ConfirmOrder";
 import ThankYou from "./ThankYou/ThankYou";
 import PreviousOrders from "./PreviousOrders/PreviousOrders";
+import TodaysRate from "./TodaysRate/TodaysRate";
 
 const App = () => {
   return (
@@ -22,15 +23,16 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/farmer-details/:id" element={<Details/>}/>
+        <Route path="/farmer-details/:id" element={<Details />} />
         <Route path="/previous-orders/:farmerId" element={<PreviousOrders />} />
         <Route path="/product-list" element={<ProductList />} />
         <Route path="/address-selection" element={<Adderss />} />
         <Route path="/quality-parameter" element={<Quality />} />
         <Route path="/quantity" element={<Quantity />} />
-        <Route path="/confirm-order" element={<ConfirmOrder/>}/>
+        <Route path="/confirm-order" element={<ConfirmOrder />} />
         <Route path="/thankyou/:orderId" element={<ThankYou />} />
         <Route path="/farmer-details/:id" element={<Details />} />
+        <Route path="/today-rate" element={<TodaysRate />} />
       </Routes>
     </BrowserRouter>
   );

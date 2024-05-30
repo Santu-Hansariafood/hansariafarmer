@@ -45,6 +45,10 @@ const FarmerDetails = () => {
     navigate(`/previous-orders/${id}`);
   };
 
+  const handleTodaysRate = () => {
+    navigate(`/today-rate`);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -131,7 +135,7 @@ const FarmerDetails = () => {
         <div className="mt-4 flex justify-between flex-wrap">
           <button
             onClick={handleBack}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
           >
             Back
           </button>
@@ -142,10 +146,16 @@ const FarmerDetails = () => {
             Choose Your Product
           </button>
           <button
+            onClick={handleTodaysRate}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Product Rate
+          </button>
+          <button
             onClick={handleViewPreviousOrders}
             className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
           >
-            View Previous Orders
+            Previous Orders
           </button>
         </div>
       </div>
