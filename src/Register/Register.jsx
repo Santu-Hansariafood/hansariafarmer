@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const RegisterFarmer = () => {
+const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { employee } = location.state || {};
@@ -367,7 +367,10 @@ const RegisterFarmer = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="profilePhoto">
+              <label
+                className="block text-gray-700 mb-2"
+                htmlFor="profilePhoto"
+              >
                 Profile Photo
               </label>
               <input
@@ -379,7 +382,10 @@ const RegisterFarmer = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="adherCardPhoto">
+              <label
+                className="block text-gray-700 mb-2"
+                htmlFor="adherCardPhoto"
+              >
                 Adher Card Photo
               </label>
               <input
@@ -391,7 +397,10 @@ const RegisterFarmer = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="panCardPhoto">
+              <label
+                className="block text-gray-700 mb-2"
+                htmlFor="panCardPhoto"
+              >
                 Pan Card Photo
               </label>
               <input
@@ -403,7 +412,10 @@ const RegisterFarmer = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="bankCardPhoto">
+              <label
+                className="block text-gray-700 mb-2"
+                htmlFor="bankCardPhoto"
+              >
                 Bank Card Photo
               </label>
               <input
@@ -415,7 +427,10 @@ const RegisterFarmer = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 mb-2" htmlFor="gstCardPhoto">
+              <label
+                className="block text-gray-700 mb-2"
+                htmlFor="gstCardPhoto"
+              >
                 GST Card Photo
               </label>
               <input
@@ -449,4 +464,4 @@ const RegisterFarmer = () => {
   );
 };
 
-export default RegisterFarmer;
+export default Register;
