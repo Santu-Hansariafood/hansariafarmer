@@ -150,14 +150,13 @@ const TodaysRate = () => {
         </p>
       </div>
       <div className="flex justify-center items-center my-4">
-  <button
-    onClick={handleBack}
-    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
-  >
-    Back
-  </button>
-</div>
-
+        <button
+          onClick={handleBack}
+          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300"
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 };
