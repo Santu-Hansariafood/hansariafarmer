@@ -6,6 +6,8 @@ import Location from "../component/Location/Location";
 import Contact from "../component/Contact/Contact";
 import Brands from "../component/Brands/Brands";
 import Groth from "../component/Groth/Groth";
+import Feedback from "../component/Feedback/Feedback";
+import Help from "../component/Help/Help";
 
 const Home = () => {
   return (
@@ -15,8 +17,10 @@ const Home = () => {
       <Teams />
       <Groth />
       <Brands />
+      <Feedback/>
       <Location />
       <Contact />
+      <Help/>
     </>
   );
 };

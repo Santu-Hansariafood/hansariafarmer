@@ -1,17 +1,35 @@
-import React from 'react';
+import React from "react";
 
 const brands = [
-  'Brand 1', 'Brand 2', 'Brand 3', 'Brand 4', 'Brand 5',
-  'Brand 6', 'Brand 7', 'Brand 8', 'Brand 9', 'Brand 10'
+  "SKYLARK HATCHERRIES PRIVATE LIMITED.",
+  "MAHARASHTRA FEEDS PRIVATE LIMITED.",
+  "PREMIUM CHICK FEEDS PVT. LTD.",
+  "JAPFA COMFEED INDIA PVT. LTD.",
+  "SUGUN FOODS PRIVATE LIMITED.",
+  "SNEHA FARMS PRIVATE LIMITED.",
+  "ABIS EXPORTS INDIA PVT. LTD.",
+  "SHALIMARPELLET FEEDS LTD.",
+  "NUTRIKRAFT INIDA PVT. LTD.",
+  "VENK'S (INDIA) LIMITED.",
+  "ANMOL FEEDS PVT. LTD.",
+  "GODREJ AGROVET LTD.",
+  "SONAVETS PVT. LTD.",
 ];
 
 const BrandsList = () => {
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4 text-center">Our Top Brands</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <h2 className="text-2xl font-bold mb-8 text-center">Our Top Brands</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {brands.map((brand, index) => (
-          <div key={index} className="brand-item bg-gray-200 p-4 rounded-md text-center transition duration-300 ease-in-out transform hover:bg-gray-300">{brand}</div>
+          <div
+            key={index}
+            className="brand-item bg-gray-500 p-6 rounded-md text-center transition duration-500 ease-in-out transform hover:bg-gray-700 hover:shadow-xl hover:-translate-y-2 hover:scale-105"
+          >
+            <p className="transition-transform text-white duration-500 ease-in-out transform hover:translate-y-1 hover:italic">
+              {brand}
+            </p>
+          </div>
         ))}
       </div>
     </div>

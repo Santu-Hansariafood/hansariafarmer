@@ -143,7 +143,7 @@ const FarmerDetails = () => {
             onClick={handleChooseProduct}
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
           >
-            Choose Your Product
+            Choose Product
           </button>
           <button
             onClick={handleTodaysRate}

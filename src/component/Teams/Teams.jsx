@@ -4,20 +4,20 @@ const Teams = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "John Doe",
-      description: "UI/UX Designer",
+      name: "Sunita Agarwal",
+      description: "Diractor",
       image: "/path/to/image1.jpg",
     },
     {
       id: 2,
-      name: "Jane Smith",
-      description: "Frontend Developer",
-      image: "/path/to/image2.jpg",
+      name: "Partha Mitra",
+      description: "Manager",
+      image: "../../Assets/Image/Teams/partha.webp",
     },
     {
       id: 3,
-      name: "Alice Johnson",
-      description: "Backend Developer",
+      name: "Prince Surahana",
+      description: "",
       image: "/path/to/image3.jpg",
     },
     {
