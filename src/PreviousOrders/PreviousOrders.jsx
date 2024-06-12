@@ -1,73 +1,86 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const PreviousOrders = () => {
-  const { farmerId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+
+  const mobileNumber = location.state?.mobileNumber;
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchPreviousOrders = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/orderByFarmer?farmerId=${farmerId}`
-        );
-        setOrders(response.data);
+        const response = await axios.get(`http://localhost:3000/bill`);
+        const allOrders = response.data;
+        const farmerOrders = allOrders.filter(order => order.mobileNumber === mobileNumber);
+        setOrders(farmerOrders);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching orders:", error);
+        console.error("Error fetching previous orders:", error);
         setLoading(false);
       }
     };
 
-    fetchOrders();
-  }, [farmerId]);
-
-  const navigateBack = () => {
-    navigate(-1);
-  };
+    fetchPreviousOrders();
+  }, [mobileNumber]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  if (!orders.length) {
+    return <div>No previous orders found</div>;
+  }
+
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-4 mt-12">
-      <h2 className="text-2xl font-bold mb-4">Previous Orders</h2>
-      <div className="overflow-x-auto mt-4">
-        <table className="table-auto bg-white p-4 shadow-md rounded-md">
-          <thead>
-            <tr>
-              <th className="px-4 py-2">Order ID</th>
-              <th className="px-4 py-2">Order Date</th>
-              <th className="px-4 py-2">Total Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <td className="border px-4 py-2">{order._id}</td>
-                <td className="border px-4 py-2">
-                  {new Date(order.orderDate).toLocaleDateString()}
-                </td>
-                <td className="border px-4 py-2">
-                  {order.totalAmount
-                    ? `$${order.totalAmount.toFixed(2)}`
-                    : "N/A"}
-                </td>
+    <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
+      <div className="w-full max-w-5xl bg-white p-8 shadow-md rounded-md text-center">
+        <h2 className="text-2xl font-bold mb-4 text-green-500">Previous Orders</h2>
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full border-collapse">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 border">Bill No</th>
+                <th className="px-4 py-2 border">Lorry Number</th>
+                <th className="px-4 py-2 border">Farmer Name</th>
+                <th className="px-4 py-2 border">Mobile Number</th>
+                <th className="px-4 py-2 border">Payable Amount</th>
+                <th className="px-4 py-2 border">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td className="border px-4 py-2">{order.billNo}</td>
+                  <td className="border px-4 py-2">{order.lorryNumber}</td>
+                  <td className="border px-4 py-2">{order.farmerName}</td>
+                  <td className="border px-4 py-2">{order.mobileNumber}</td>
+                  <td className="border px-4 py-2">{order.payableAmount}</td>
+                  <td className="border px-4 py-2">
+                    <button
+                      onClick={() => navigate(`/order-details/${order._id}`, { state: { billData: order } })}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="mt-4 flex justify-between flex-wrap">
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mb-2 md:mb-0"
+          >
+            Back
+          </button>
+        </div>
       </div>
-      <button
-        onClick={navigateBack}
-        className="mt-4 bg-black text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:bg-gray-800 hover:text-yellow-500 hover:scale-105 shadow-lg"
-      >
-        Back
-      </button>
     </div>
   );
 };
