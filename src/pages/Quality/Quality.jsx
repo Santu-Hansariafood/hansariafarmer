@@ -26,7 +26,7 @@ const Quality = () => {
   const handleContinue = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/quality-parameter",
+        "https://main-server-9oo9.onrender.com/quality-parameter",
         {
           farmerId,
           farmerName,

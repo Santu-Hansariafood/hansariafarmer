@@ -36,7 +36,7 @@ const ProductList = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:3000/farmerProducts",
+          "https://main-server-9oo9.onrender.com/farmerProducts",
           {
             farmerId,
             farmerName,

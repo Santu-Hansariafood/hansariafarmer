@@ -46,7 +46,7 @@ const ConfirmOrder = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/orderByFarmer",
+        "https://main-server-9oo9.onrender.com/orderByFarmer",
         orderData
       );
       const orderId = response.data._id; // Assuming the response contains the order ID

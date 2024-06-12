@@ -35,7 +35,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/forgot-password", {
+      const response = await fetch("https://main-server-9oo9.onrender.com/forgot-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

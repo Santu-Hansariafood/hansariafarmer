@@ -20,7 +20,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("https://main-server-9oo9.onrender.com/login", {
         mobileNumber,
         password,
       });
