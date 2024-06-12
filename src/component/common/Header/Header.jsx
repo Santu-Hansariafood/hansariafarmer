@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Logo from "../../../../src/Image/logo/hansaria.webp"
+import { useAuth } from "../../../contexts/AuthContext";
+import Logo from "../../../Image/logo/hansaria.webp";
 
 const handleScroll = (e, id) => {
   e.preventDefault();
@@ -14,6 +15,7 @@ const handleScroll = (e, id) => {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,7 +27,7 @@ const Header = () => {
         <div className="mr-4">
           <img src={Logo} alt="Logo" className="h-8 w-8" />
         </div>
-        <nav className={`hidden md:flex space-x-4 ${isOpen ? 'hidden' : ''}`}>
+        <nav className={`hidden md:flex space-x-4 ${isOpen ? "hidden" : ""}`}>
           <a
             href="#home"
             className="text-white hover:text-gray-300"
@@ -64,15 +66,24 @@ const Header = () => {
         </nav>
       </div>
       <div className="flex items-center">
-        <a href="/login" className="text-white hover:text-gray-300 ml-auto">
-          Login
-        </a>
+        {isAuthenticated ? (
+          <button
+            onClick={logout}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-auto"
+          >
+            Logout
+          </button>
+        ) : (
+          <a
+            href="/login"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"
+          >
+            Login
+          </a>
+        )}
       </div>
       <div className="md:hidden">
-        <button
-          onClick={toggleMenu}
-          className="text-white focus:outline-none"
-        >
+        <button onClick={toggleMenu} className="text-white focus:outline-none">
           <svg
             className="w-6 h-6"
             fill="none"
@@ -126,9 +137,21 @@ const Header = () => {
           >
             Contact
           </a>
-          <a href="/login" className="text-white hover:text-gray-300">
-            Login
-          </a>
+          {isAuthenticated ? (
+            <button
+              onClick={logout}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Logout
+            </button>
+          ) : (
+            <a
+              href="/login"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Login
+            </a>
+          )}
         </div>
       )}
     </header>

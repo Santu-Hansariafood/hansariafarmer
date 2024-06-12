@@ -67,8 +67,12 @@ const TodaysRate = () => {
             </div>
             {selectedGodown.quality.map((item, index) => (
               <div className="flex border-t" key={index}>
-                <div className="flex-1 p-2 text-center border-r">{item.parameter}</div>
-                <div className="flex-1 p-2 text-center border-r">{item.accepted}</div>
+                <div className="flex-1 p-2 text-center border-r">
+                  {item.parameter}
+                </div>
+                <div className="flex-1 p-2 text-center border-r">
+                  {item.accepted}
+                </div>
                 <div className="flex-1 p-2 text-center">{item.upto}</div>
               </div>
             ))}
@@ -90,10 +94,16 @@ const TodaysRate = () => {
               <div className="border rounded-lg overflow-hidden">
                 <div className="flex bg-gray-200 font-bold">
                   <div className="flex-1 p-2 text-center border-r">No.</div>
-                  <div className="flex-1 p-2 text-center border-r">Godown Name</div>
-                  <div className="flex-1 p-2 text-center border-r">Location</div>
+                  <div className="flex-1 p-2 text-center border-r">
+                    Godown Name
+                  </div>
+                  <div className="flex-1 p-2 text-center border-r">
+                    Location
+                  </div>
                   <div className="flex-1 p-2 text-center border-r">Rate</div>
-                  <div className="flex-1 p-2 text-center">Quality Parameters</div>
+                  <div className="flex-1 p-2 text-center">
+                    Quality Parameters
+                  </div>
                 </div>
                 {currentGodowns.map((godown, index) => (
                   <div className="flex border-t" key={godown._id}>
@@ -104,9 +114,12 @@ const TodaysRate = () => {
                       {godown.name}
                     </div>
                     <div className="flex-1 p-2 text-center border-r">
-                      {godown.location.name}, {godown.location.landmark}, {godown.location.state}
+                      {godown.location.name}, {godown.location.landmark},{" "}
+                      {godown.location.state}
                     </div>
-                    <div className="flex-1 p-2 text-center border-r">{godown.rate}</div>
+                    <div className="flex-1 p-2 text-center border-r">
+                      {godown.rate}
+                    </div>
                     <div className="flex-1 p-2 text-center">
                       <button
                         onClick={() => handleShowQuality(godown)}
@@ -128,7 +141,9 @@ const TodaysRate = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  disabled={currentPage === Math.ceil(godowns.length / godownsPerPage)}
+                  disabled={
+                    currentPage === Math.ceil(godowns.length / godownsPerPage)
+                  }
                   className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
                 >
                   Next
@@ -137,7 +152,9 @@ const TodaysRate = () => {
             </div>
 
             <div className="flex-1">
-              <h2 className="text-xl font-semibold mb-2">Terms and Conditions</h2>
+              <h2 className="text-xl font-semibold mb-2">
+                Terms and Conditions
+              </h2>
               <div className="mt-2 text-gray-500">
                 <p>1: Quiental per 1 kg Unloading</p>
                 <p>2: Unloading Charges 8Rs Per Quintal</p>
@@ -159,7 +176,10 @@ const TodaysRate = () => {
 
           <div className="text-center mt-4">
             <h2 className="text-xl font-semibold mb-2">Note:</h2>
-            <p>If you want to book more than 100MT, contact 54545454 (person name)</p>
+            <p>
+              If you want to book more than 100MT, contact 54545454 (person
+              name)
+            </p>
           </div>
           <div className="flex justify-center items-center my-4">
             <button

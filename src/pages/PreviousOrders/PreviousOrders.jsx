@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import NoOrders from "../../component/common/NoOrders/NoOrders";
 
 const PreviousOrders = () => {
   const navigate = useNavigate();
@@ -15,7 +16,9 @@ const PreviousOrders = () => {
       try {
         const response = await axios.get(`http://localhost:3000/bill`);
         const allOrders = response.data;
-        const farmerOrders = allOrders.filter(order => order.mobileNumber === mobileNumber);
+        const farmerOrders = allOrders.filter(
+          (order) => order.mobileNumber === mobileNumber
+        );
         setOrders(farmerOrders);
         setLoading(false);
       } catch (error) {
@@ -32,13 +35,15 @@ const PreviousOrders = () => {
   }
 
   if (!orders.length) {
-    return <div>No previous orders found</div>;
+    return <NoOrders/>;
   }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
       <div className="w-full max-w-5xl bg-white p-8 shadow-md rounded-md text-center">
-        <h2 className="text-2xl font-bold mb-4 text-green-500">Previous Orders</h2>
+        <h2 className="text-2xl font-bold mb-4 text-green-500">
+          Previous Orders
+        </h2>
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse">
             <thead>
@@ -61,7 +66,11 @@ const PreviousOrders = () => {
                   <td className="border px-4 py-2">{order.payableAmount}</td>
                   <td className="border px-4 py-2">
                     <button
-                      onClick={() => navigate(`/order-details/${order._id}`, { state: { billData: order } })}
+                      onClick={() =>
+                        navigate(`/order-details/${order._id}`, {
+                          state: { billData: order },
+                        })
+                      }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     >
                       View

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import Carousel from "../component/Carousel/Carousel";
+import Carousel from "../../component/Carousel/Carousel";
 
 const Quality = () => {
   const [qualityParameters, setQualityParameters] = useState({
@@ -56,7 +56,7 @@ const Quality = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center w-full h-screen">
       <div className="w-full md:w-1/2">
-        <Carousel/>
+        <Carousel />
       </div>
       <div className="w-full md:w-1/2">
         <div className="flex flex-col items-center justify-center h-full px-4">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import hfLogo from "../Image/logo/hansaria.webp";
-import AGLogo from "../Image/logo/hansaria.webp";
+import hfLogo from "../../Image/logo/hansaria.webp";
+import AGLogo from "../../Image/logo/hansaria.webp";
 const companyData = {
   "Hansaria Food Private Limited": {
     address: "1234 Main St, City, Country",

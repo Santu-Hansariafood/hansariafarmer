@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import maizeImage from "../Image/productImage/maize.webp";
-import wheatImage from "../Image/productImage/wheat.webp";
-import paddyImage from "../Image/productImage/paddy.webp";
-import soyaImage from "../Image/productImage/soya.webp";
-import brokenImage from "../Image/productImage/broken.webp";
+import maizeImage from "../../Image/productImage/maize.webp";
+import wheatImage from "../../Image/productImage/wheat.webp";
+import paddyImage from "../../Image/productImage/paddy.webp";
+import soyaImage from "../../Image/productImage/soya.webp";
+import brokenImage from "../../Image/productImage/broken.webp";
 
 const ProductList = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -44,7 +44,9 @@ const ProductList = () => {
           }
         );
         console.log("Response:", response.data);
-        navigate("/address-selection", { state: { farmerId, farmerName, selectedProducts } });
+        navigate("/address-selection", {
+          state: { farmerId, farmerName, selectedProducts },
+        });
       } catch (error) {
         console.error("Error saving products:", error);
       }

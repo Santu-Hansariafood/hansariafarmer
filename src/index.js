@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import App from "./routes/App";
+import { AuthProvider } from "./contexts/AuthContext";
+import "./App.css";
 import "./index.css";
-import App from "./App";
-import Header from "./component/common/Header/Header";
-import Footer from "./component/common/Footer/Footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
-    <Header />
-    <App />
-    <Footer />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );

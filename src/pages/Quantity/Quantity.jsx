@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import maizeImage from "../Image/productImage/maize.webp";
-import wheatImage from "../Image/productImage/wheat.webp";
-import paddyImage from "../Image/productImage/paddy.webp";
-import soyaImage from "../Image/productImage/soya.webp";
-import brokenImage from "../Image/productImage/broken.webp";
+import maizeImage from "../../Image/productImage/maize.webp";
+import wheatImage from "../../Image/productImage/wheat.webp";
+import paddyImage from "../../Image/productImage/paddy.webp";
+import soyaImage from "../../Image/productImage/soya.webp";
+import brokenImage from "../../Image/productImage/broken.webp";
 
 const Quantity = () => {
   const [quantity, setQuantity] = useState({

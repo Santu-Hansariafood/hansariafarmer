@@ -25,7 +25,9 @@ const ThankYou = () => {
         <p className="mb-2">
           <strong>Farmer Name:</strong> {farmerName}
         </p>
-        <p className="mb-2"><strong>Order ID:</strong> {orderId}</p>
+        <p className="mb-2">
+          <strong>Order ID:</strong> {orderId}
+        </p>
         <div className="mt-4">
           <button
             onClick={handleBackToHome}

@@ -1,35 +1,51 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const defaultPassword = "Hans@123";
 
-    if (password !== defaultPassword) {
-      setError("Invalid mobile number or password");
+    if (!/^\d{10}$/.test(mobileNumber)) {
+      setError("Mobile number must be exactly 10 digits");
       return;
     }
 
     try {
-      const response = await axios.get("http://localhost:3000/registerFarmer");
-      const farmers = response.data.farmers;
+      const response = await axios.post("http://localhost:3000/login", {
+        mobileNumber,
+        password,
+      });
 
-      const farmer = farmers.find((f) => f.mobile === mobileNumber);
+      const { success, farmer, message } = response.data;
 
-      if (farmer) {
-        navigate(`/farmer-details/${farmer._id}`, { state: farmer });
+      if (success) {
+        login(farmer);
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "You have successfully logged in!",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          navigate(`/farmer-details/${farmer._id}`, { state: farmer });
+        });
       } else {
-        setError("Invalid mobile number or password");
+        setError(message || "Invalid mobile number or password");
       }
     } catch (error) {
-      setError("An error occurred during login");
+      setError(
+        error.response?.data?.message ||
+          "An error occurred during login. Please try again later."
+      );
     }
   };
 
@@ -53,6 +69,8 @@ const Login = () => {
               onChange={(e) => setMobileNumber(e.target.value)}
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               required
+              pattern="\d{10}"
+              title="Mobile number must be exactly 10 digits"
             />
           </div>
           <div className="mb-4">
