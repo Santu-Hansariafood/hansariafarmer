@@ -159,8 +159,7 @@ const DisplayBill = () => {
                 <strong>Date:</strong> {new Date().toLocaleDateString()}
               </p>
               <p>
-                <strong>Bill No:</strong>{" "}
-                {billData.billNumber}
+                <strong>Bill No:</strong> {billData.billNumber}
               </p>
             </td>
           </tr>

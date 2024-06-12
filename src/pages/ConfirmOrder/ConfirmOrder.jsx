@@ -57,7 +57,9 @@ const ConfirmOrder = () => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        navigate(`/thankyou/${orderId}`, { state: { farmerId, farmerName , orderId} });
+        navigate(`/thankyou/${orderId}`, {
+          state: { farmerId, farmerName, orderId },
+        });
       });
 
       console.log("Order confirmed:", response.data);

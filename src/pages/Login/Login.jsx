@@ -20,10 +20,13 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post("https://main-server-9oo9.onrender.com/login", {
-        mobileNumber,
-        password,
-      });
+      const response = await axios.post(
+        "https://main-server-9oo9.onrender.com/login",
+        {
+          mobileNumber,
+          password,
+        }
+      );
 
       const { success, farmer, message } = response.data;
 
@@ -69,6 +72,7 @@ const Login = () => {
               onChange={(e) => setMobileNumber(e.target.value)}
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               required
+              placeholder="Enter Mobile Number"
               pattern="\d{10}"
               title="Mobile number must be exactly 10 digits"
             />
@@ -87,6 +91,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               required
+              placeholder="Enter Password"
             />
           </div>
           <button

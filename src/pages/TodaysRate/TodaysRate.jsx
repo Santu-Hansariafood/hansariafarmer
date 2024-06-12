@@ -14,7 +14,9 @@ const TodaysRate = () => {
   useEffect(() => {
     const fetchGodowns = async () => {
       try {
-        const response = await axios.get("https://main-server-9oo9.onrender.com/godown");
+        const response = await axios.get(
+          "https://main-server-9oo9.onrender.com/godown"
+        );
         setGodowns(response.data);
       } catch (error) {
         console.error("Error fetching godown data:", error);

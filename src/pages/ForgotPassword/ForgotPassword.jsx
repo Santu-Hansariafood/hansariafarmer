@@ -35,13 +35,16 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch("https://main-server-9oo9.onrender.com/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ mobileNumber, aadhaarNumber }),
-      });
+      const response = await fetch(
+        "https://main-server-9oo9.onrender.com/forgot-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ mobileNumber, aadhaarNumber }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -117,6 +120,7 @@ const ForgotPassword = () => {
                 errors.mobileNumber ? "border-red-500" : "border-gray-300"
               } rounded`}
               required
+              placeholder="Enter Mobile Number"
             />
             {errors.mobileNumber && (
               <p className="text-red-500 text-sm">{errors.mobileNumber}</p>
@@ -135,6 +139,7 @@ const ForgotPassword = () => {
                 errors.aadhaarNumber ? "border-red-500" : "border-gray-300"
               } rounded`}
               required
+              placeholder="Enter Adhar Number"
             />
             {errors.aadhaarNumber && (
               <p className="text-red-500 text-sm">{errors.aadhaarNumber}</p>

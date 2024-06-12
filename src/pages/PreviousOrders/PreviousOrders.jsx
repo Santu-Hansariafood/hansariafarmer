@@ -14,7 +14,9 @@ const PreviousOrders = () => {
   useEffect(() => {
     const fetchPreviousOrders = async () => {
       try {
-        const response = await axios.get(`https://main-server-9oo9.onrender.com/bill`);
+        const response = await axios.get(
+          `https://main-server-9oo9.onrender.com/bill`
+        );
         const allOrders = response.data;
         const farmerOrders = allOrders.filter(
           (order) => order.mobileNumber === mobileNumber
@@ -35,7 +37,7 @@ const PreviousOrders = () => {
   }
 
   if (!orders.length) {
-    return <NoOrders/>;
+    return <NoOrders />;
   }
 
   return (

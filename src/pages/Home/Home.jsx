@@ -17,10 +17,10 @@ const Home = () => {
       <Teams />
       <Groth />
       <Brands />
-      <Feedback/>
+      <Feedback />
       <Location />
       <Contact />
-      <Help/>
+      <Help />
     </>
   );
 };

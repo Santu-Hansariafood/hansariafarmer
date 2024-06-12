@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "../routes/ProtectedRoute";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
@@ -16,7 +17,6 @@ import TodaysRate from "../pages/TodaysRate/TodaysRate";
 import DisplayBill from "../pages/DisplayBill/DisplayBill";
 import Header from "../component/common/Header/Header";
 import Footer from "../component/common/Footer/Footer";
-import ProtectedRoute from "../routes/ProtectedRoute";
 
 const App = () => {
   return (

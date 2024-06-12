@@ -11,7 +11,9 @@ const FarmerDetails = () => {
   useEffect(() => {
     const fetchFarmerDetails = async () => {
       try {
-        const response = await axios.get(`https://main-server-9oo9.onrender.com/registerFarmer`);
+        const response = await axios.get(
+          `https://main-server-9oo9.onrender.com/registerFarmer`
+        );
         const farmers = response.data.farmers;
         const selectedFarmer = farmers.find((farmer) => farmer._id === id);
         if (selectedFarmer) {
@@ -60,7 +62,9 @@ const FarmerDetails = () => {
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
       <div className="w-full max-w-3xl bg-white p-8 shadow-md rounded-md text-center md:w-3/4 lg:w-3/4 xl:w-3/4">
-        <h2 className="text-2xl font-bold mb-4 text-green-500">Farmer Details</h2>
+        <h2 className="text-2xl font-bold mb-4 text-green-500">
+          Farmer Details
+        </h2>
         <div className="flex flex-col items-center mb-4">
           <div className="h-32 w-32 overflow-hidden rounded-full mb-2">
             <img
@@ -73,7 +77,9 @@ const FarmerDetails = () => {
             <table className="table-auto w-full">
               <tbody>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">Name:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    Name:
+                  </td>
                   <td className="text-left">{farmer.name}</td>
                 </tr>
                 <tr>
@@ -83,19 +89,27 @@ const FarmerDetails = () => {
                   <td className="text-left">{farmer.fatherName}</td>
                 </tr>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">Mobile:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    Mobile:
+                  </td>
                   <td className="text-left">{farmer.mobile}</td>
                 </tr>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">Email:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    Email:
+                  </td>
                   <td className="text-left">{farmer.email}</td>
                 </tr>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">State:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    State:
+                  </td>
                   <td className="text-left">{farmer.state}</td>
                 </tr>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">District:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    District:
+                  </td>
                   <td className="text-left">{farmer.district}</td>
                 </tr>
                 <tr>
@@ -105,11 +119,15 @@ const FarmerDetails = () => {
                   <td className="text-left">{farmer.policeStation}</td>
                 </tr>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">Village:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    Village:
+                  </td>
                   <td className="text-left">{farmer.village}</td>
                 </tr>
                 <tr>
-                  <td className="font-semibold text-left text-green-500">Pin Code:</td>
+                  <td className="font-semibold text-left text-green-500">
+                    Pin Code:
+                  </td>
                   <td className="text-left">{farmer.pinCode}</td>
                 </tr>
               </tbody>
