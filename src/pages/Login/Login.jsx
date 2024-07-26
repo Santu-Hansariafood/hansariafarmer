@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://main-server-9oo9.onrender.com/login",
+        "https://main-server-2kc5.onrender.com/api/farmers/login",
         {
           mobileNumber,
           password,

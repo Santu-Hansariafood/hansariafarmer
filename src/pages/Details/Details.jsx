@@ -12,7 +12,7 @@ const FarmerDetails = () => {
     const fetchFarmerDetails = async () => {
       try {
         const response = await axios.get(
-          `https://main-server-9oo9.onrender.com/registerFarmer`
+          `https://main-server-2kc5.onrender.com/registerFarmer`
         );
         const farmers = response.data.farmers;
         const selectedFarmer = farmers.find((farmer) => farmer._id === id);

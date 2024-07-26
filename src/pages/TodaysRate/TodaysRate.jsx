@@ -15,7 +15,7 @@ const TodaysRate = () => {
     const fetchGodowns = async () => {
       try {
         const response = await axios.get(
-          "https://main-server-9oo9.onrender.com/godown"
+          "https://main-server-2kc5.onrender.com/godown"
         );
         setGodowns(response.data);
       } catch (error) {

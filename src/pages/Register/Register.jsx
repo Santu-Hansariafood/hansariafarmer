@@ -70,7 +70,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://main-server-9oo9.onrender.com/registerFarmer",
+        "https://main-server-2kc5.onrender.com/registerFarmer",
         data,
         {
           headers: {

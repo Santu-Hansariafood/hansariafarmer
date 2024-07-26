@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import bcrypt from "bcryptjs";
 
 const ForgotPassword = () => {
   const [mobileNumber, setMobileNumber] = useState("");
@@ -7,17 +8,16 @@ const ForgotPassword = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({
-    mobileNumber:
-      "Mobile number should be 10 digits and start with a digit from 6 to 9",
+    mobileNumber: "Mobile number should be 10 digits and start with a digit from 6 to 9",
     aadhaarNumber: "Aadhaar number should be exactly 12 digits",
   });
 
+  // Function to validate inputs
   const validateInputs = () => {
     const errors = {};
 
     if (!/^[6-9]\d{9}$/.test(mobileNumber)) {
-      errors.mobileNumber =
-        "Mobile number should be 10 digits and start with a digit from 6 to 9";
+      errors.mobileNumber = "Mobile number should be 10 digits and start with a digit from 6 to 9";
     }
 
     if (!/^\d{12}$/.test(aadhaarNumber)) {
@@ -27,6 +27,7 @@ const ForgotPassword = () => {
     return errors;
   };
 
+  // Function to handle show password
   const handleShowPassword = async () => {
     const validationErrors = validateInputs();
     if (Object.keys(validationErrors).length > 0) {
@@ -35,20 +36,18 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await fetch(
-        "https://main-server-9oo9.onrender.com/forgot-password",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ mobileNumber, aadhaarNumber }),
-        }
-      );
+      const response = await fetch("https://main-server-2kc5.onrender.com/api/farmers/forgotPassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ mobileNumber, aadhaarNumber }),
+      });
 
       if (response.ok) {
         const data = await response.json();
-        setPassword(data.password);
+        const hashedPassword = bcrypt.hashSync(data.password, 10);
+        setPassword(hashedPassword);
         setShowPassword(true);
         setErrors({});
       } else {
@@ -59,6 +58,7 @@ const ForgotPassword = () => {
     }
   };
 
+  // Function to handle mobile number change
   const handleMobileNumberChange = (e) => {
     const value = e.target.value;
     if (/^\d{0,10}$/.test(value)) {
@@ -68,14 +68,14 @@ const ForgotPassword = () => {
         if (/^[6-9]\d{9}$/.test(value)) {
           delete newErrors.mobileNumber;
         } else {
-          newErrors.mobileNumber =
-            "Mobile number should be 10 digits and start with a digit from 6 to 9";
+          newErrors.mobileNumber = "Mobile number should be 10 digits and start with a digit from 6 to 9";
         }
         return newErrors;
       });
     }
   };
 
+  // Function to handle Aadhaar number change
   const handleAadhaarNumberChange = (e) => {
     const value = e.target.value;
     if (/^\d{0,12}$/.test(value)) {
@@ -85,14 +85,14 @@ const ForgotPassword = () => {
         if (/^\d{12}$/.test(value)) {
           delete newErrors.aadhaarNumber;
         } else {
-          newErrors.aadhaarNumber =
-            "Aadhaar number should be exactly 12 digits";
+          newErrors.aadhaarNumber = "Aadhaar number should be exactly 12 digits";
         }
         return newErrors;
       });
     }
   };
 
+  // Function to copy password to clipboard
   const handleCopyPassword = () => {
     navigator.clipboard.writeText(password);
     setShowPassword(false);
@@ -103,47 +103,32 @@ const ForgotPassword = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-6 border border-gray-300 rounded-lg bg-gray-50">
         <h2 className="text-2xl font-bold mb-6 text-center">Forgot Password</h2>
-        <form
-          className="flex flex-col space-y-4 h-3/4"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="flex flex-col space-y-4 h-3/4" onSubmit={(e) => e.preventDefault()}>
           <div className="flex flex-col">
-            <label htmlFor="mobileNumber" className="mb-2 font-semibold">
-              Mobile Number:
-            </label>
+            <label htmlFor="mobileNumber" className="mb-2 font-semibold">Mobile Number:</label>
             <input
               type="text"
               id="mobileNumber"
               value={mobileNumber}
               onChange={handleMobileNumberChange}
-              className={`p-2 border ${
-                errors.mobileNumber ? "border-red-500" : "border-gray-300"
-              } rounded`}
+              className={`p-2 border ${errors.mobileNumber ? "border-red-500" : "border-gray-300"} rounded`}
               required
               placeholder="Enter Mobile Number"
             />
-            {errors.mobileNumber && (
-              <p className="text-red-500 text-sm">{errors.mobileNumber}</p>
-            )}
+            {errors.mobileNumber && <p className="text-red-500 text-sm">{errors.mobileNumber}</p>}
           </div>
           <div className="flex flex-col">
-            <label htmlFor="aadhaarNumber" className="mb-2 font-semibold">
-              Aadhaar Number:
-            </label>
+            <label htmlFor="aadhaarNumber" className="mb-2 font-semibold">Aadhaar Number:</label>
             <input
               type="text"
               id="aadhaarNumber"
               value={aadhaarNumber}
               onChange={handleAadhaarNumberChange}
-              className={`p-2 border ${
-                errors.aadhaarNumber ? "border-red-500" : "border-gray-300"
-              } rounded`}
+              className={`p-2 border ${errors.aadhaarNumber ? "border-red-500" : "border-gray-300"} rounded`}
               required
-              placeholder="Enter Adhar Number"
+              placeholder="Enter Aadhaar Number"
             />
-            {errors.aadhaarNumber && (
-              <p className="text-red-500 text-sm">{errors.aadhaarNumber}</p>
-            )}
+            {errors.aadhaarNumber && <p className="text-red-500 text-sm">{errors.aadhaarNumber}</p>}
           </div>
           <button
             type="button"
@@ -155,33 +140,18 @@ const ForgotPassword = () => {
           <div className="">
             <p>
               Back To Login{" "}
-              <Link
-                to="/login"
-                className="text-blue-500 hover:text-blue-700 focus:outline-none"
-              >
-                Login
-              </Link>
+              <Link to="/login" className="text-blue-500 hover:text-blue-700 focus:outline-none">Login</Link>
             </p>
             <p>
               Don't Have Account{" "}
-              <Link
-                to="/register"
-                className="text-blue-500 hover:text-blue-700 focus:outline-none"
-              >
-                Register
-              </Link>
+              <Link to="/register" className="text-blue-500 hover:text-blue-700 focus:outline-none">Register</Link>
             </p>
           </div>
         </form>
         {showPassword && (
-          <div
-            className="mt-6 p-4 border border-gray-300 rounded bg-gray-100 cursor-pointer"
-            onClick={handleCopyPassword}
-          >
+          <div className="mt-6 p-4 border border-gray-300 rounded bg-gray-100 cursor-pointer" onClick={handleCopyPassword}>
             <p className="mb-2">Click to copy the password:</p>
-            <div className="p-2 bg-white border border-gray-300 rounded text-center font-mono">
-              {password}
-            </div>
+            <div className="p-2 bg-white border border-gray-300 rounded text-center font-mono">{password}</div>
           </div>
         )}
       </div>

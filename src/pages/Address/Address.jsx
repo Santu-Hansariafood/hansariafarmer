@@ -23,7 +23,7 @@ const Address = () => {
   const handleContinue = async () => {
     try {
       const response = await axios.post(
-        "https://main-server-9oo9.onrender.com/pickuplocations",
+        "https://main-server-2kc5.onrender.com/pickuplocations",
         {
           farmerId,
           farmerName,
